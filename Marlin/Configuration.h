@@ -12,8 +12,8 @@
 #define STRING_CONFIG_H_AUTHOR "erik" //Who made the changes.
 
 // This determines the communication speed of the printer
-#define BAUDRATE 250000
-//#define BAUDRATE 115200
+// #define BAUDRATE 250000
+#define BAUDRATE 115200 // Connecting is problematic at 250000 - ronsheely
 
 //// The following define selects which electronics board you have. Please choose the one that matches your setup
 // Gen7 custom (Alfons3 Version) = 10 "https://github.com/Alfons3/Generation_7_Electronics"
@@ -23,6 +23,7 @@
 // MEGA/RAMPS up to 1.2 = 3
 // RAMPS 1.3 = 33 (Power outputs: Extruder, Bed, Fan)
 // RAMPS 1.3 = 34 (Power outputs: Extruder0, Extruder1, Bed)
+// RAMPS 1.4 uses the same pin definitions as 1.3. - ronsheely
 // Gen6 = 5
 // Gen6 deluxe = 51
 // Sanguinololu 1.2 and above = 62
@@ -32,7 +33,8 @@
 // Gen3+ =9
 
 #ifndef MOTHERBOARD
-#define MOTHERBOARD 7
+// #define MOTHERBOARD 7
+#define MOTHERBOARD 33 // Ramps 1.4, 1 extruder, bed, fan - ronsheely
 #endif
 
 
@@ -61,10 +63,16 @@
 // 52 is 200k thermistor - ATC Semitec 204GT-2 (1k pullup)
 // 55 is 100k thermistor - ATC Semitec 104GT-2 (Used in ParCan) (1k pullup)
 
-#define TEMP_SENSOR_0 -1
-#define TEMP_SENSOR_1 0
-#define TEMP_SENSOR_2 0
-#define TEMP_SENSOR_BED 0
+// #define TEMP_SENSOR_0 -1
+// #define TEMP_SENSOR_1 0
+// #define TEMP_SENSOR_2 0
+// #define TEMP_SENSOR_BED 0
+#define TEMP_SENSOR_0 1 // 100K thermistor on extruder - ronsheely
+#define TEMP_SENSOR_1 1 // 100k thermistor on heated print bed - ronsheely
+#define TEMP_SENSOR_2 0 // not used - ronsheely
+#define TEMP_SENSOR_BED 1 // The heated print bed sensor is on temp sensor 1 - ronsheely
+// revisit - How do we tell the host (printrun pronterface) that temp sensor 1 is the heated bed sensor?
+// revisited - Setting TEMP_SENSOR_BED appears to enable the Marlin firmware to send the "B" bed temperature. - ronsheely
 
 // Actual temperature must be close to target for this long before M109 returns success
 #define TEMP_RESIDENCY_TIME 10	// (seconds)
@@ -218,7 +226,8 @@ const bool Z_ENDSTOPS_INVERTING = true; // set to true to invert the logic of th
 
 // default settings 
 
-#define DEFAULT_AXIS_STEPS_PER_UNIT   {78.7402,78.7402,200*8/3,760*1.1}  // default steps per unit for ultimaker 
+// #define DEFAULT_AXIS_STEPS_PER_UNIT   {78.7402,78.7402,200*8/3,760*1.1}  // default steps per unit for ultimaker 
+#define DEFAULT_AXIS_STEPS_PER_UNIT   {66.6666,66.6666,200*8/3,760*1.1}  // default steps per unit for pocket printer - ronsheely 
 #define DEFAULT_MAX_FEEDRATE          {500, 500, 5, 45}    // (mm/sec)    
 #define DEFAULT_MAX_ACCELERATION      {9000,9000,100,10000}    // X, Y, Z, E maximum start speed for accelerated moves. E default values are good for skeinforge 40+, for older versions raise them a lot.
 
