@@ -68,7 +68,7 @@
 // #define TEMP_SENSOR_2 0
 // #define TEMP_SENSOR_BED 0
 #define TEMP_SENSOR_0 1 // 100K thermistor on extruder - ronsheely
-#define TEMP_SENSOR_1 1 // 100k thermistor on heated print bed - ronsheely
+#define TEMP_SENSOR_1 0 // 100k thermistor on heated print bed. See TEMP_BED_PIN in pins.h - ronsheely
 #define TEMP_SENSOR_2 0 // not used - ronsheely
 #define TEMP_SENSOR_BED 1 // The heated print bed sensor is on temp sensor 1 - ronsheely
 // revisit - How do we tell the host (printrun pronterface) that temp sensor 1 is the heated bed sensor?
@@ -113,11 +113,16 @@
 
 // If you are using a preconfigured hotend then you can use one of the value sets by uncommenting it
 // Ultimaker
+//    #define  DEFAULT_Kp 22.2
+//    #define  DEFAULT_Ki 1.08  
+//    #define  DEFAULT_Kd 114  
+
+// Chaucer
     #define  DEFAULT_Kp 22.2
     #define  DEFAULT_Ki 1.08  
     #define  DEFAULT_Kd 114  
 
-// Makergear
+// Makergear 
 //    #define  DEFAULT_Kp 7.0
 //    #define  DEFAULT_Ki 0.1  
 //    #define  DEFAULT_Kd 12  
