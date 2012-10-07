@@ -234,8 +234,37 @@ const bool Z_ENDSTOPS_INVERTING = true; // set to true to invert the logic of th
 
 // default settings 
 
-// #define DEFAULT_AXIS_STEPS_PER_UNIT   {78.7402,78.7402,200*8/3,760*1.1}  // default steps per unit for ultimaker 
-#define DEFAULT_AXIS_STEPS_PER_UNIT   {66.6666,66.6666,2560.0,760*1.1}  // default steps per unit for Chaucer - ronsheely 
+// #define DEFAULT_AXIS_STEPS_PER_UNIT   {78.7402,78.7402,200*8/3,760*1.1}  // default steps per unit for ultimaker
+
+// x and y-axis steps/mm - ronsheely
+// 200 steps/rev
+// 16 microsteps
+// 24 teeth at 2mm/tooth
+// (200*16)/(24*2) 
+// or
+// 200/3
+// ≈ 66.666666666667
+
+// z-axis steps/mm - ronsheely
+// 200 steps/rev
+// 16 microsteps
+// 1.25 mm/thread
+// (200*16)/1.25
+// =2560.0
+
+// e-axis steps/mm - ronsheely
+// 200 steps/rev
+// 16 microsteps
+// 5:1 gear ratio
+// 12mm dia gear
+// (200*16*5)/(Pi*12)
+// or
+// 16000/(Pi*12)
+// ≈ 424.41318157839
+// Revisit - Why do we add 10% to the extrusion rate? - ronsheely
+// Revisit - A single experiment showed that a 50mm extrusion request yielded 49mm, even with the 10% addition. Why?
+
+#define DEFAULT_AXIS_STEPS_PER_UNIT   {66.6666,66.6666,2560.0,424.4131*1.1}  // default steps per unit for Chaucer - ronsheely 
 #define DEFAULT_MAX_FEEDRATE          {500, 500, 5, 45}    // (mm/sec)    
 #define DEFAULT_MAX_ACCELERATION      {9000,9000,100,10000}    // X, Y, Z, E maximum start speed for accelerated moves. E default values are good for skeinforge 40+, for older versions raise them a lot.
 
