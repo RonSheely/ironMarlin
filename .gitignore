@@ -1,5 +1,2 @@
-*.o
-applet/
-*~
-*.orig
-*.rej
+.DS_Store
+
